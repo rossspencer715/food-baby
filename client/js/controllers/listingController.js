@@ -16,15 +16,16 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
 	 */
     };
 
-    $scope.deleteListing = function(index) {
-	   /**TODO
-        Delete the article using the Listings factory. If the removal is successful, 
-		navigate back to 'listing.list'. Otherwise, display the error. 
-       */
+    $scope.deleteListing = function(code) {
+       Listings.delete(code);
     };
 
-    $scope.showDetails = function(index) {
-      $scope.detailedInfo = $scope.listings[index];
+    $scope.showDetails = function(code) {
+      $scope.listings.forEach(function(listing) {
+        if (listing.code == code) {
+          $scope.detailedInfo = listing;
+        }
+      });
     };
   }
 ]);
